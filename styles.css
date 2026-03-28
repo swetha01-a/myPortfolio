@@ -44,6 +44,16 @@ body {
     overflow-x: hidden;
 }
 
+.page-noise {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+    z-index: 1;
+}
+
 img {
     max-width: 100%;
     display: block;
@@ -59,6 +69,28 @@ section {
     overflow: hidden;
 }
 
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    pointer-events: none;
+    border-radius: 999px;
+    mix-blend-mode: soft-light;
+    z-index: 1200;
+    transition: transform 0.15s ease-out, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.cursor-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    box-shadow: 0 0 18px rgba(157, 47, 42, 0.4);
+}
+
+.cursor-outline {
+    display: none; /* hide blurry outer circle */
+}
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -72,15 +104,18 @@ section {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 32px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
     opacity: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
 }
 
 .scroll-indicator span {
@@ -103,6 +138,12 @@ section {
     top: 8px;
     transform: translateX(-50%);
     animation: scroll-bounce 2s infinite;
+}
+
+.scroll-indicator small {
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    text-transform: uppercase;
 }
 
 @keyframes scroll-bounce {
@@ -276,6 +317,8 @@ section {
 .cta-container {
     max-width: var(--max-width);
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .hero {
@@ -284,6 +327,41 @@ section {
     display: flex;
     align-items: center;
     position: relative;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.gradient-orb {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.7;
+}
+
+.orb-1 {
+    background: radial-gradient(circle at 30% 30%, #c46f5f 0%, rgba(157, 47, 42, 0.18) 60%);
+    top: -40px;
+    left: -60px;
+}
+
+.orb-2 {
+    background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.7) 0%, rgba(240, 215, 200, 0.12) 70%);
+    top: 22%;
+    right: 0;
+}
+
+.orb-3 {
+    background: radial-gradient(circle at 50% 50%, rgba(111, 29, 26, 0.18) 0%, rgba(255, 250, 244, 0.05) 60%);
+    bottom: -60px;
+    left: 28%;
 }
 
 .hero-grid {
@@ -370,6 +448,20 @@ section {
 .overlay-btn:active::before {
     width: 300px;
     height: 300px;
+}
+
+.click-ripple {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: ripple-grow 0.7s ease-out forwards;
+}
+
+@keyframes ripple-grow {
+    from { width: 0; height: 0; opacity: 0.6; }
+    to { width: 220px; height: 220px; opacity: 0; }
 }
 
 .cta-button,
@@ -495,6 +587,26 @@ section {
     will-change: transform;
 }
 
+.typed-prefix {
+    letter-spacing: 0.12em;
+}
+
+.typed-role {
+    font-weight: 800;
+}
+
+.typed-cursor {
+    display: inline-block;
+    width: 1ch;
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+}
+
 .red-bg {
     background:
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.15), transparent 32%),
@@ -554,12 +666,14 @@ section {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
-    transition: transform var(--transition-base);
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
     will-change: transform;
+    isolation: isolate;
 }
 
 .project-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 50px 120px rgba(0, 0, 0, 0.32);
 }
 
 .website-image-main {
@@ -567,7 +681,7 @@ section {
     width: 100%;
     min-height: 460px;
     object-fit: cover;
-    transition: transform var(--transition-base);
+    transition: transform var(--transition-slow);
 }
 
 .project-card:hover .website-image-main {
@@ -576,14 +690,12 @@ section {
 
 .project-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(111, 29, 26, 0.9), rgba(141, 44, 40, 0.95));
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.72));
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px;
     opacity: 0;
     transition: opacity var(--transition-base);
     backdrop-filter: blur(8px);
@@ -596,7 +708,7 @@ section {
 .overlay-btn {
     background: #ffffff;
     color: var(--accent);
-    padding: 14px 28px;
+    padding: 14px 24px;
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
     font-size: 14px;
 }
@@ -906,6 +1018,33 @@ section {
 .exp-content p {
     color: var(--muted);
     line-height: 1.8;
+}
+
+.skill-meter {
+    margin-top: 14px;
+    background: rgba(34, 29, 27, 0.06);
+    border-radius: 999px;
+    position: relative;
+    height: 10px;
+    overflow: hidden;
+}
+
+.skill-meter .skill-label {
+    position: absolute;
+    left: 12px;
+    top: -20px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.skill-meter .skill-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-deep) 100%);
+    box-shadow: 0 8px 24px rgba(157, 47, 42, 0.35);
 }
 
 .featured-grid,
@@ -1552,9 +1691,6 @@ section {
     .featured-grid,
     .about-container {
         gap: 24px;
-    }
-}
-        grid-template-columns: 1fr;
     }
 }
 
