@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swetha - Web Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#portfolio" class="logo">SWETHA</a>
+            <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+            <ul class="nav-menu">
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="portfolio" class="hero">
+        <div class="hero-content">
+            <p class="section-kicker animate-slide-up">Front-end Developer and Designer</p>
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1 class="animate-slide-left hero-title">Designing bold websites with a clean, human feel.</h1>
+                    <p class="animate-slide-left delay-1">I'm Swetha, a Computer Science student focused on front-end experiences that feel polished, fast, and memorable. I enjoy turning ideas into responsive websites that look sharp on every screen.</p>
+                    <div class="hero-actions animate-slide-left delay-2">
+                        <a href="#projects" class="cta-button">See Projects</a>
+                        <a href="#contact" class="secondary-button">Let's Talk</a>
+                    </div>
+                    <div class="contact-info animate-slide-left delay-3">
+                        <span>swetha2912a@gmail.com</span>
+                        <span>Available for freelance work</span>
+                    </div>
+                    <div class="hero-metrics animate-slide-up delay-4">
+                        <div class="metric-card">
+                            <strong>01+</strong>
+                            <span>Live portfolio builds</span>
+                        </div>
+                        <div class="metric-card">
+                            <strong>100%</strong>
+                            <span>Responsive-first approach</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-images">
+                    <img src="hero-image.jpg" alt="Portfolio Hero" class="hero-image animate-slide-right delay-1">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <section id="projects" class="website-project red-bg">
+        <div class="website-container">
+            <div class="project-header">
+                <p class="section-kicker light animate-slide-left">Featured Build</p>
+                <h2 class="animate-slide-left">My Website</h2>
+                <p class="project-tagline animate-slide-right delay-1">A playful concept site built with modern front-end fundamentals and a strong visual identity.</p>
+            </div>
+            <div class="project-showcase">
+                <div class="project-preview animate-slide-left delay-2">
+                    <div class="project-card">
+                        <img src="wesite-preview.png" alt="One Piece Website Preview" class="website-image-main">
+                        <div class="project-overlay">
+                            <a href="https://swetha01-a.github.io/onepiece/" target="_blank" class="overlay-btn">
+                                <span>View Project</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="https://swetha01-a.github.io/onepiece/" target="_blank" class="project-link animate-scale-fade delay-4">View My Website</a>
+                </div>
+                <div class="project-details animate-slide-right delay-2">
+                    <h3>One Piece Website</h3>
+                    <p>A creatively designed website featuring One Piece content with modern web design principles, clean code, and responsive layouts. It highlights interface design, visual storytelling, and a fun branded browsing experience.</p>
+
+                    <div class="project-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li class="animate-slide-left delay-3">Fully Responsive Design</li>
+                            <li class="animate-slide-left delay-4">Modern UI and UX</li>
+                            <li class="animate-slide-left delay-5">Cross-browser Compatible</li>
+                            <li class="animate-slide-left">Fast Performance</li>
+                            <li class="animate-slide-left">SEO Optimized</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <h4>Technologies Used</h4>
+                        <div class="tech-badges animate-slide-up delay-3">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-highlights">
+                <div class="highlight animate-slide-up delay-1">
+                    <h4>Design</h4>
+                    <p>Clean and modern interface with smooth animations and intuitive navigation.</p>
+                </div>
+                <div class="highlight animate-slide-up delay-2">
+                    <h4>Performance</h4>
+                    <p>Optimized code and resources for fast loading times and smooth interactions.</p>
+                </div>
+                <div class="highlight animate-slide-up delay-3">
+                    <h4>User Experience</h4>
+                    <p>Carefully crafted to provide an excellent experience on any device or browser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section red-bg">
+        <div class="cta-container">
+            <p class="section-kicker light animate-slide-down">Collaboration</p>
+            <h2 class="animate-slide-down">INTERESTED IN<br>WORKING TOGETHER?</h2>
+            <p class="animate-slide-up delay-1">Let's collaborate on your next web project. I bring creativity, technical expertise, and dedication to every project I undertake.</p>
+            <a href="#contact" class="cta-button animate-scale-fade delay-2">Get In Touch</a>
+        </div>
+    </section>
+
+    <section id="services" class="services light-bg">
+        <div class="services-container">
+            <p class="section-kicker animate-slide-left">What I Do</p>
+            <h2 class="animate-slide-left">SERVICES</h2>
+            <div class="services-grid">
+                <div class="service-card animate-slide-up delay-1" data-service="design">
+                    <div class="service-icon">Brand-led</div>
+                    <h3>Website Designing</h3>
+                    <p>Beautiful, modern websites with clean design principles. Focused on user experience and visual appeal to make your brand stand out.</p>
+                </div>
+                <div class="service-card animate-slide-up delay-2" data-service="dev">
+                    <div class="service-icon">Fast build</div>
+                    <h3>Web Development</h3>
+                    <p>Responsive, functional websites built with HTML5, CSS3, and JavaScript. Mobile-friendly and optimized for performance and SEO.</p>
+                </div>
+                <div class="service-card animate-slide-up delay-3" data-service="app">
+                    <div class="service-icon">Mobile-first</div>
+                    <h3>App Designing</h3>
+                    <p>Intuitive app interfaces with user-centric design. Creating smooth interactions and engaging user experiences for both web and mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experiences light-bg">
+        <div class="exp-container">
+            <p class="section-kicker animate-slide-left">Strengths</p>
+            <h2 class="animate-slide-left">EXPERIENCES</h2>
+            <div class="exp-list">
+                <div class="exp-item animate-slide-right delay-1" data-skill="frontend">
+                    <div class="exp-icon">01</div>
+                    <div class="exp-content">
+                        <h3>Front-End Development</h3>
+                        <p>Proficient in HTML5, CSS3, JavaScript, and responsive design. Creating interactive, user-friendly interfaces that work seamlessly across all devices and browsers.</p>
+                    </div>
+                </div>
+                <div class="exp-item animate-slide-right delay-2" data-skill="web">
+                    <div class="exp-icon">02</div>
+                    <div class="exp-content">
+                        <h3>Web Technologies</h3>
+                        <p>Experience with modern web development tools, frameworks, and best practices. Building performant, scalable websites with clean, maintainable code.</p>
+                    </div>
+                </div>
+                <div class="exp-item animate-slide-right delay-3" data-skill="programming">
+                    <div class="exp-icon">03</div>
+                    <div class="exp-content">
+                        <h3>Programming Languages</h3>
+                        <p>Skilled in JavaScript, Python, and Java. Leveraging these languages to create efficient solutions and solve complex problems in web development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured light-bg">
+        <div class="featured-container">
+            <p class="section-kicker animate-slide-left">Selected Work</p>
+            <h2 class="animate-slide-left">FEATURED PROJECT</h2>
+            <div class="featured-grid">
+                <img src="wesite-preview.png" alt="Featured Project" class="featured-image animate-slide-left delay-1" data-parallax="true">
+                <div class="featured-text animate-slide-right delay-1">
+                    <h3>One Piece Website</h3>
+                    <p>A creatively designed website featuring One Piece content with modern web design principles, clean code, and responsive layouts. It showcases interface design, visual storytelling, and a fun branded browsing experience with smooth animations and intuitive navigation.</p>
+                    <a href="https://swetha01-a.github.io/onepiece/" target="_blank" class="project-link">View Live Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about red-bg">
+        <div class="about-container">
+            <div class="about-text animate-slide-left">
+                <p class="section-kicker light">About Swetha</p>
+                <h2>ABOUT ME</h2>
+                <p class="delay-1">I'm a passionate Computer Science student with a strong focus on web development. I enjoy creating modern, responsive websites that solve real-world problems. My approach combines clean code practices with user-centered design to deliver websites that are both beautiful and highly functional.</p>
+                <div class="about-stats delay-2">
+                    <div class="stat">
+                        <h3>1+</h3>
+                        <p>Website Created</p>
+                    </div>
+                    <div class="stat">
+                        <h3>Endless</h3>
+                        <p>Ideas in Progress</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="profile.jpg" alt="Swetha - Web Developer" class="about-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <p class="section-kicker animate-slide-down">Contact</p>
+            <h2 class="animate-slide-down">GET IN TOUCH</h2>
+            <div class="contact-content">
+                <div class="contact-info-block animate-slide-left delay-1">
+                    <h3>Let's Connect</h3>
+                    <p>Email: <a href="mailto:swetha2912a@gmail.com">swetha2912a@gmail.com</a></p>
+                    <p>Have a project in mind? Let's discuss how I can help bring your vision to life.</p>
+                    <div class="contact-points">
+                        <div class="contact-point">
+                            <strong>Response</strong>
+                            <span>Usually within 24 hours</span>
+                        </div>
+                        <div class="contact-point">
+                            <strong>Best for</strong>
+                            <span>Portfolio sites, landing pages, UI refreshes</span>
+                        </div>
+                    </div>
+                </div>
+                <form
+                    class="contact-form animate-slide-right delay-1"
+                    id="contact-form"
+                    data-service-id="service_g1havaq"
+                    data-template-id="template_y5lsodq"
+                    data-public-key="PJlAs8i-wHemIoZ7p"
+                >
+                    <label class="sr-only" for="name">Your Name</label>
+                    <input type="text" id="name" name="from_name" placeholder="Your Name" autocomplete="name" required>
+                    <div class="form-error-message" id="name-error">Please enter your name.</div>
+                    <label class="sr-only" for="email">Your Email</label>
+                    <input type="email" id="email" name="from_email" placeholder="Your Email" autocomplete="email" required>
+                    <div class="form-error-message" id="email-error">Please enter a valid email.</div>
+                    <label class="sr-only" for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <div class="form-error-message" id="message-error">Please fill out this field.</div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <p class="form-status" id="form-status" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Swetha. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com/swetha01-a" target="_blank" class="animate-slide-up delay-1">GitHub</a>
+            <a href="https://instagram.com/_itz_swetha._" target="_blank" class="animate-slide-up delay-2">Instagram</a>
+            <a href="https://instagram.com/buildwith.swe_" target="_blank" class="animate-slide-up delay-3">Portfolio IG</a>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
