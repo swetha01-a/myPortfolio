@@ -14,6 +14,9 @@
 </head>
 <body>
     <div class="scroll-progress"></div>
+    <div class="page-noise" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
     
     <nav class="navbar">
         <div class="nav-container">
@@ -30,12 +33,21 @@
     </nav>
 
     <section id="portfolio" class="hero">
+        <div class="hero-bg" aria-hidden="true">
+            <div class="gradient-orb orb-1" data-depth="0.25"></div>
+            <div class="gradient-orb orb-2" data-depth="0.18"></div>
+            <div class="gradient-orb orb-3" data-depth="0.12"></div>
+        </div>
         <div class="hero-content">
-            <p class="section-kicker animate-slide-up">Front-end Developer and Designer</p>
+            <p class="section-kicker animate-slide-up">
+                <span class="typed-prefix">I’m</span>
+                <span class="typed-role" aria-live="polite">Front-end Developer</span>
+                <span class="typed-cursor" aria-hidden="true">|</span>
+            </p>
             <div class="hero-grid">
                 <div class="hero-text">
                     <h1 class="animate-slide-left hero-title">Designing bold websites with a clean, human feel.</h1>
-                    <p class="animate-slide-left delay-1">I'm Swetha, a Computer Science student focused on front-end experiences that feel polished, fast, and memorable. I enjoy turning ideas into responsive websites that look sharp on every screen.</p>
+                    <p class="animate-slide-left delay-1">I'm Swetha, a Computer Science student crafting interfaces that feel cinematic yet effortless. I blend design sensitivity with performant code so every scroll tells a story.</p>
                     <div class="hero-actions animate-slide-left delay-2">
                         <a href="#projects" class="cta-button">See Projects</a>
                         <a href="#contact" class="secondary-button">Let's Talk</a>
@@ -55,14 +67,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero-images">
+                <div class="hero-images" data-depth="0.08">
                     <img src="hero-image.jpg" alt="Portfolio Hero" class="hero-image animate-slide-right delay-1">
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
+        <button class="scroll-indicator" aria-label="Scroll to projects" data-target="#projects">
             <span></span>
-        </div>
+            <small>Scroll</small>
+        </button>
     </section>
 
     <section id="projects" class="website-project red-bg">
@@ -74,7 +87,7 @@
             </div>
             <div class="project-showcase">
                 <div class="project-preview animate-slide-left delay-2">
-                    <div class="project-card">
+                    <div class="project-card" data-depth="0.16">
                         <img src="wesite-preview.png" alt="One Piece Website Preview" class="website-image-main">
                         <div class="project-overlay">
                             <a href="https://swetha01-a.github.io/onepiece/" target="_blank" class="overlay-btn">
@@ -82,7 +95,6 @@
                             </a>
                         </div>
                     </div>
-                    <a href="https://swetha01-a.github.io/onepiece/" target="_blank" class="project-link animate-scale-fade delay-4">View My Website</a>
                 </div>
                 <div class="project-details animate-slide-right delay-2">
                     <h3>One Piece Website</h3>
@@ -105,6 +117,7 @@
                             <span class="tech-badge">HTML5</span>
                             <span class="tech-badge">CSS3</span>
                             <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">GSAP</span>
                             <span class="tech-badge">Responsive Design</span>
                         </div>
                     </div>
@@ -171,6 +184,10 @@
                     <div class="exp-content">
                         <h3>Front-End Development</h3>
                         <p>Proficient in HTML5, CSS3, JavaScript, and responsive design. Creating interactive, user-friendly interfaces that work seamlessly across all devices and browsers.</p>
+                        <div class="skill-meter" data-level="92">
+                            <span class="skill-label">Craft</span>
+                            <span class="skill-bar"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="exp-item animate-slide-right delay-2" data-skill="web">
@@ -178,6 +195,10 @@
                     <div class="exp-content">
                         <h3>Web Technologies</h3>
                         <p>Experience with modern web development tools, frameworks, and best practices. Building performant, scalable websites with clean, maintainable code.</p>
+                        <div class="skill-meter" data-level="88">
+                            <span class="skill-label">Performance</span>
+                            <span class="skill-bar"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="exp-item animate-slide-right delay-3" data-skill="programming">
@@ -185,6 +206,10 @@
                     <div class="exp-content">
                         <h3>Programming Languages</h3>
                         <p>Skilled in JavaScript, Python, and Java. Leveraging these languages to create efficient solutions and solve complex problems in web development.</p>
+                        <div class="skill-meter" data-level="84">
+                            <span class="skill-label">Problem Solving</span>
+                            <span class="skill-bar"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -285,4 +310,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
