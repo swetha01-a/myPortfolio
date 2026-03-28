@@ -3,6 +3,7 @@
    ============================================ */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -21,6 +22,44 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+/* ============================================
+   CUSTOM CURSOR
+   ============================================ */
+
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+if (cursorDot && cursorOutline) {
+    const moveDotX = gsap.quickTo(cursorDot, 'x', { duration: 0.15, ease: 'power2.out' });
+    const moveDotY = gsap.quickTo(cursorDot, 'y', { duration: 0.15, ease: 'power2.out' });
+    const moveOutX = gsap.quickTo(cursorOutline, 'x', { duration: 0.25, ease: 'power3.out' });
+    const moveOutY = gsap.quickTo(cursorOutline, 'y', { duration: 0.25, ease: 'power3.out' });
+
+    const showCursor = () => {
+        cursorDot.style.opacity = 1;
+        cursorOutline.style.opacity = 1;
+    };
+
+    window.addEventListener('mousemove', (e) => {
+        showCursor();
+        moveDotX(e.clientX);
+        moveDotY(e.clientY);
+        moveOutX(e.clientX);
+        moveOutY(e.clientY);
+    });
+
+    const magneticTargets = document.querySelectorAll('a, button, .project-card, .service-card, .exp-item');
+    magneticTargets.forEach(target => {
+        target.addEventListener('mouseenter', () => {
+            gsap.to(cursorOutline, { scale: 1.6, duration: 0.25, ease: 'power3.out' });
+            gsap.to(cursorDot, { scale: 0.9, duration: 0.2 });
+        });
+        target.addEventListener('mouseleave', () => {
+            gsap.to([cursorOutline, cursorDot], { scale: 1, duration: 0.25, ease: 'power3.out' });
+        });
+    });
+}
 
 /* ============================================
    SCROLL PROGRESS INDICATOR
@@ -87,16 +126,91 @@ if (scrollIndicator) {
     });
 
     scrollIndicator.addEventListener('click', () => {
+        const targetId = scrollIndicator.dataset.target || '#projects';
+        const target = document.querySelector(targetId);
         gsap.to(window, {
             duration: 0.8,
             scrollTo: {
-                y: window.innerHeight,
+                y: target || window.innerHeight,
                 offsetY: 0
             },
             ease: 'power2.inOut'
         });
     });
 }
+
+/* ============================================
+   HERO CINEMATIC ENTRANCE
+   ============================================ */
+
+if (!prefersReducedMotion) {
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    heroTimeline
+        .from('.hero-bg .gradient-orb', { opacity: 0, scale: 0.6, duration: 1.2, stagger: 0.1 }, 0)
+        .from('.hero .section-kicker', { y: 24, opacity: 0, duration: 0.6 }, 0.1)
+        .from('.hero-title', { y: 60, opacity: 0, duration: 1 }, 0.15)
+        .from('.hero-text p', { y: 24, opacity: 0, duration: 0.8 }, 0.25)
+        .from('.hero-actions', { y: 20, opacity: 0, duration: 0.8 }, 0.35)
+        .from('.hero-metrics', { y: 20, opacity: 0, duration: 0.8 }, 0.45)
+        .from('.hero-image', { y: 40, opacity: 0, duration: 1, ease: 'power2.out' }, 0.2);
+}
+
+/* ============================================
+   TYPING EFFECT FOR ROLE
+   ============================================ */
+
+const roles = ['Front-end Developer', 'UI Designer', 'Interaction Crafter', 'Story-led Engineer'];
+const roleEl = document.querySelector('.typed-role');
+
+if (roleEl && !prefersReducedMotion) {
+    let roleIndex = 0;
+
+    const typeRole = (text) => {
+        roleEl.textContent = '';
+        let i = 0;
+        const typer = setInterval(() => {
+            roleEl.textContent = text.slice(0, i + 1);
+            i++;
+            if (i === text.length) {
+                clearInterval(typer);
+                setTimeout(() => eraseRole(text), 1100);
+            }
+        }, 60);
+    };
+
+    const eraseRole = (text) => {
+        let i = text.length;
+        const eraser = setInterval(() => {
+            roleEl.textContent = text.slice(0, i - 1);
+            i--;
+            if (i === 0) {
+                clearInterval(eraser);
+                roleIndex = (roleIndex + 1) % roles.length;
+                setTimeout(() => typeRole(roles[roleIndex]), 200);
+            }
+        }, 28);
+    };
+
+    typeRole(roles[roleIndex]);
+}
+
+/* ============================================
+   MICRO-INTERACTION: BUTTON RIPPLES
+   ============================================ */
+
+const rippleTargets = document.querySelectorAll('.cta-button, .project-link, .submit-btn, .secondary-button, .overlay-btn');
+rippleTargets.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const ripple = document.createElement('span');
+        ripple.className = 'click-ripple';
+        const rect = btn.getBoundingClientRect();
+        ripple.style.left = `${e.clientX - rect.left}px`;
+        ripple.style.top = `${e.clientY - rect.top}px`;
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 700);
+    });
+});
 
 /* ============================================
    GSAP SCROLL REVEAL ANIMATIONS
@@ -223,6 +337,26 @@ document.querySelectorAll('[data-parallax="true"]').forEach(image => {
     });
 });
 
+// Parallax for depth-driven elements
+if (!prefersReducedMotion) {
+    const depthItems = document.querySelectorAll('[data-depth]');
+    if (depthItems.length) {
+        depthItems.forEach((item) => {
+            const depth = Number(item.dataset.depth || 0.08);
+            gsap.to(item, {
+                y: () => depth * 120,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        });
+    }
+}
+
 // Metric cards hover and scroll reveal
 document.querySelectorAll('.metric-card').forEach((card, index) => {
     gsap.from(card, {
@@ -322,6 +456,44 @@ document.querySelectorAll('.stat').forEach((stat, index) => {
             y: 0,
             background: 'rgba(255, 255, 255, 0.1)'
         });
+    });
+});
+
+// Skill meters animate on scroll
+document.querySelectorAll('.skill-meter').forEach(meter => {
+    const bar = meter.querySelector('.skill-bar');
+    const level = meter.dataset.level || 0;
+
+    if (bar) {
+        gsap.fromTo(bar,
+            { width: '0%' },
+            {
+                width: `${level}%`,
+                duration: 1.2,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: meter,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            }
+        );
+    }
+});
+
+// Global section reveal rhythm
+document.querySelectorAll('section').forEach(section => {
+    gsap.from(section.querySelectorAll('.section-kicker, h2'), {
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 26,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power2.out'
     });
 });
 
